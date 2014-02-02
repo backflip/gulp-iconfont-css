@@ -4,7 +4,6 @@ var path = require('path'),
 	gutil = require('gulp-util'),
 	through = require('through2'),
 	swig = require('swig'),
-	rename = require('gulp-rename'),
 	fs = require('fs');
 
 module.exports = function (config) {
