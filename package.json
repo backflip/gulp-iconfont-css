@@ -1,0 +1,25 @@
+{
+  "name": "gulp-iconfont-scss",
+  "version": "0.0.3",
+  "description": "Create a SCSS file for the iconfonts.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha tests/*.mocha.js"
+  },
+  "keywords": [
+    "gulpplugin",
+    "gulp",
+    "icon",
+    "font",
+    "scss"
+  ],
+  "author": "Thomas Jaggi, Nicolas Froidure",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-util": "~2.2.0",
+    "swig": "~1.3.2"
+  },
+  "devDependencies": {
+    "mocha": "~1.16.2"
+  }
+}
