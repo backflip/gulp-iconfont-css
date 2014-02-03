@@ -1,0 +1,4 @@
+<% _.each(glyphs, function(glyph) { %>.<%= glyph.filename %> {
+	content: "\u<%= glyph.codepoint %>";
+}
+<% }); %>

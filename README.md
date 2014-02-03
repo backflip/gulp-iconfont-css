@@ -1,48 +1,51 @@
-# gulp-iconfont-scss [![NPM version](https://badge.fury.io/js/gulp-iconfont.png)](https://npmjs.org/package/gulp-iconfont-scss) [![Build status](https://api.travis-ci.org/backflip/gulp-iconfont-scss.png)](https://travis-ci.org/backflip/gulp-iconfont-scss)
-> Create a CSS from fonts with [Gulp](http://gulpjs.com/).
+# gulp-iconfont-css
+> Generate (S)CSS file for icon font created with [Gulp](http://gulpjs.com/)
 
 ## Usage
 
-First, install `gulp-iconfont-scss` as a development dependency:
+First, install `gulp-iconfont-css` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-iconfont-scss
+npm install --save-dev gulp-iconfont-css
 ```
 
 Then, add it to your `gulpfile.js`:
 
 ```javascript
 var iconfont = require('gulp-iconfont');
-var scss = require('gulp-iconfont-scss');
+var iconfontCss = require('gulp-iconfont-css');
 
-gulp.task('Iconfont', function(){
-  gulp.src(['assets/icons/*.svg'])
-    .pipe(scss({
+gulp.task('iconfont', function(){
+  gulp.src(['app/assets/icons/*.svg'])
+    .pipe(iconfontCss({
       
     })
     .pipe(iconfont({
-      fontName: 'myfont', // required
-      appendCodepoints: true // recommanded option
+      fontName: 'Icons'
      }))
-    .pipe(gulp.dest('www/fonts/'));
+    .pipe(gulp.dest('app/assets/fonts/icons/'));
 });
 ```
 
-`gulp-iconfont-scss` suits well with `gulp-iconfont` but you can use it in a
- more modular fashion by directly useing `gulp-svgicons2svgfont`,
- `gulp-svg2tff`, `gulp-ttf2eot` and/or `gulp-ttf2woff`.
+`gulp-iconfont-css` works well with `gulp-iconfont` but you can use it in a more modular fashion by directly using `gulp-svgicons2svgfont`, `gulp-svg2tff`, `gulp-ttf2eot` and/or `gulp-ttf2woff`.
 
 ## API
 
-### scss(options)
+### iconfontCSS(options)
 
-#### options.template
+#### options.path
 Type: `String`
 
-The template path (required).
+The template path (optional, defaults to _icons.css provided with plugin).
 
-#### options.ouputfile
+#### options.targetPath
 Type: `String`
 
-The json path (required).
+The path where the (S)CSS file should be saved, relative to the path used in ```gulp.dest()``` (optional, defaults to ```_icons.css```).
+
+#### options.engine
+Type: `String`
+
+The template engine to use (optional, defaults to ```lodash```). 
+See https://github.com/visionmedia/consolidate.js/ for available engines. The engine has to be installed before using.
 
