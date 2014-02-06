@@ -18,7 +18,8 @@ var iconfontCss = require('gulp-iconfont-css');
 gulp.task('iconfont', function(){
   gulp.src(['app/assets/icons/*.svg'])
     .pipe(iconfontCss({
-      
+      path: 'app/assets/css/templates/_icons.scss',
+      targetPath: '../../css/_icons.scss' // relative to gulp.dest below
     })
     .pipe(iconfont({
       fontName: 'Icons'
