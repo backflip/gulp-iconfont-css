@@ -21,10 +21,14 @@ function iconfontCSS(config) {
 		path: __dirname + '/_icons.scss',
 		targetPath: '_icons.scss',
 		engine: 'lodash',
-		firstGlyph: 0xE001
+		firstGlyph: 0xE001,
+		fontFamily: false
 	}, config);
 
 	// Validate config
+	if (!config.fontFamily) {
+		throw new gutil.PluginError(PLUGIN_NAME, 'You must specify a fontFamily');
+	}
 	if (!consolidate[config.engine]) {
 		throw new gutil.PluginError(PLUGIN_NAME, 'Consolidate missing template engine "' + config.engine + '"');
 	}
@@ -61,7 +65,8 @@ function iconfontCSS(config) {
 		// Add glyph
 		glyphMap.push({
 			filename: path.basename(file.path, '.svg'),
-			codepoint: currentGlyph
+			codepoint: currentGlyph,
+			unicode: currentGlyph.toString(16).toUpperCase().substring(1)
 		});
 
 		// Prepend codepoint to input file path for gulp-iconfont
@@ -81,7 +86,8 @@ function iconfontCSS(config) {
 
 		if (glyphMap.length) {
 			consolidate[config.engine](config.path, {
-					glyphs: glyphMap
+					glyphs: glyphMap,
+					fontFamily : config.fontFamily
 				}, function(error, html) {
 					if (error) {
 						throw error;

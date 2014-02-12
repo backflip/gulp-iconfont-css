@@ -1,4 +1,13 @@
-<% _.each(glyphs, function(glyph) { %>.<%= glyph.filename %> {
-	content: "\u<%= glyph.codepoint %>";
+.icon {
+    font-size: 32px;
+    font-family: "<%=fontFamily%>";
+    display: inline-block;
+    font-style: normal;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+<% _.each(glyphs, function(glyph) { %>.icon-<%= glyph.filename %>:before {
+    content: "\e<%= glyph.unicode %>";
 }
 <% }); %>
