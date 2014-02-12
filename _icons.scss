@@ -1,4 +1,33 @@
-<% _.each(glyphs, function(glyph) { %>.<%= glyph.filename %> {
-	content: "\u<%= glyph.codepoint %>";
+@font-face {
+	font-family: "<%= fontFamily %>";
+	src: url('<%= fontPath %><%= fontFamily %>.eot?') format('eot');
+	src: url('<%= fontPath %><%= fontFamily %>.eot?iefix') format('eot'),
+		url('<%= fontPath %><%= fontFamily %>.woff') format('woff'),
+		url('<%= fontPath %><%= fontFamily %>.ttf') format('truetype');
+}
+
+@mixin icon($filename) {
+	$char: "";
+<% _.each(glyphs, function(glyph) { %>
+	@if $filename == <%= glyph.fileName %> {
+		$char: "\<%= glyph.codePoint %>";
+	}<% }); %>
+
+	&:before {
+		content: $char;
+		font-family: "<%= fontFamily %>";
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+		text-decoration: none;
+		text-transform: none;
+	}
+}
+
+<% _.each(glyphs, function(glyph) { %>.icon-<%= glyph.fileName %> {
+	@include icon(<%= glyph.fileName %>);
 }
 <% }); %>

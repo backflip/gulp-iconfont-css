@@ -1,6 +1,38 @@
+@font-face {
+	font-family: "Icons";
+	src: url('./Icons.eot?') format('eot');
+	src: url('./Icons.eot?iefix') format('eot'),
+		url('./Icons.woff') format('woff'),
+		url('./Icons.ttf') format('truetype');
+}
+
+@mixin icon($filename) {
+	$char: "";
+
+	@if $filename == github {
+		$char: "\E001";
+	}
+	@if $filename == twitter {
+		$char: "\E002";
+	}
+
+	&:before {
+		content: $char;
+		font-family: "Icons";
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+		text-decoration: none;
+		text-transform: none;
+	}
+}
+
 .icon-github {
-	content: "\u57345";
+	@include icon(github);
 }
 .icon-twitter {
-	content: "\u57346";
+	@include icon(twitter);
 }

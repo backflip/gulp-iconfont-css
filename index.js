@@ -11,6 +11,7 @@ var PLUGIN_NAME  = 'gulp-iconfont-css';
 function iconfontCSS(config) {
 	var glyphMap = [],
 		currentGlyph,
+		currentCodePoint,
 		inputFilePrefix,
 		stream,
 		outputFile,
@@ -20,8 +21,10 @@ function iconfontCSS(config) {
 	config = _.merge({
 		path: __dirname + '/_icons.scss',
 		targetPath: '_icons.scss',
+		fontPath: './',
 		engine: 'lodash',
-		firstGlyph: 0xE001
+		firstGlyph: 0xE001,
+		fontFamily: 'Icons'
 	}, config);
 
 	// Validate config
@@ -58,14 +61,16 @@ function iconfontCSS(config) {
 			});
 		}
 
+		currentCodePoint = currentGlyph.toString(16).toUpperCase();
+
 		// Add glyph
 		glyphMap.push({
-			filename: path.basename(file.path, '.svg'),
-			codepoint: currentGlyph
+			fileName: path.basename(file.path, '.svg'),
+			codePoint: currentCodePoint
 		});
 
-		// Prepend codepoint to input file path for gulp-iconfont
-		inputFilePrefix = 'u' + (currentGlyph).toString(16).toUpperCase() + '-';
+		// Prepend codePoint to input file path for gulp-iconfont
+		inputFilePrefix = 'u' + currentCodePoint + '-';
 
 		file.path = path.dirname(file.path) + '/' + inputFilePrefix + path.basename(file.path);
 
@@ -81,7 +86,9 @@ function iconfontCSS(config) {
 
 		if (glyphMap.length) {
 			consolidate[config.engine](config.path, {
-					glyphs: glyphMap
+					glyphs: glyphMap,
+					fontFamily: config.fontFamily,
+					fontPath: config.fontPath
 				}, function(error, html) {
 					if (error) {
 						throw error;

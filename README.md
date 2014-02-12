@@ -18,8 +18,10 @@ var iconfontCss = require('gulp-iconfont-css');
 gulp.task('iconfont', function(){
   gulp.src(['app/assets/icons/*.svg'])
     .pipe(iconfontCss({
+      fontFamily: 'Icons', // has to be identical to iconfont's "fontName" option
       path: 'app/assets/css/templates/_icons.scss',
-      targetPath: '../../css/_icons.scss' // relative to gulp.dest below
+      targetPath: '../../css/_icons.scss', // relative to gulp.dest below
+      fontPath: '../../fonts/icons/', // relative to targetPath (yes, slightly redundant but necessary for CSS template)
     })
     .pipe(iconfont({
       fontName: 'Icons'
@@ -34,6 +36,11 @@ gulp.task('iconfont', function(){
 
 ### iconfontCSS(options)
 
+#### options.fontFamily
+Type: `String`
+
+The name of the generated font family (optional, defaults to "Icons"). **Important**: Has to be identical to iconfont's ```fontName``` option.
+
 #### options.path
 Type: `String`
 
@@ -43,6 +50,11 @@ The template path (optional, defaults to _icons.css provided with plugin).
 Type: `String`
 
 The path where the (S)CSS file should be saved, relative to the path used in ```gulp.dest()``` (optional, defaults to ```_icons.css```).
+
+#### options.fontPath
+Type: `String`
+
+Directory of font files relative to generated (S)CSS file (optional, defaults to ```./```).
 
 #### options.engine
 Type: `String`
