@@ -22,7 +22,7 @@ gulp.task('iconfont', function(){
       path: 'app/assets/css/templates/_icons.scss',
       targetPath: '../../css/_icons.scss', // relative to gulp.dest below
       fontPath: '../../fonts/icons/', // relative to targetPath (yes, slightly redundant but necessary for CSS template)
-    })
+    }))
     .pipe(iconfont({
       fontName: 'Icons'
      }))
