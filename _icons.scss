@@ -1,9 +1,9 @@
 @font-face {
-	font-family: "<%= fontFamily %>";
-	src: url('<%= fontPath %><%= fontFamily %>.eot?') format('eot');
-	src: url('<%= fontPath %><%= fontFamily %>.eot?iefix') format('eot'),
-		url('<%= fontPath %><%= fontFamily %>.woff') format('woff'),
-		url('<%= fontPath %><%= fontFamily %>.ttf') format('truetype');
+	font-family: "<%= fontName %>";
+	src: url('<%= fontPath %><%= fontName %>.eot?') format('eot');
+	src: url('<%= fontPath %><%= fontName %>.eot?iefix') format('eot'),
+		url('<%= fontPath %><%= fontName %>.woff') format('woff'),
+		url('<%= fontPath %><%= fontName %>.ttf') format('truetype');
 }
 
 @mixin icon($filename) {
@@ -15,7 +15,7 @@
 
 	&:before {
 		content: $char;
-		font-family: "<%= fontFamily %>";
+		font-family: "<%= fontName %>";
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
 		font-style: normal;

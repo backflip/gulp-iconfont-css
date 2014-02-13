@@ -8,6 +8,7 @@ describe('gulp-iconfont-css', function() {
 	it('should generate SCSS file', function(done) {
 		gulp.src(__dirname + '/fixtures/icons/*.svg')
 			.pipe(iconfontCss({
+				fontName: 'Icons',
 				path: __dirname + '/fixtures/_icons.scss',
 				targetPath: '../_icons.scss'
 			}))

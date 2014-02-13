@@ -23,11 +23,13 @@ function iconfontCSS(config) {
 		targetPath: '_icons.scss',
 		fontPath: './',
 		engine: 'lodash',
-		firstGlyph: 0xE001,
-		fontFamily: 'Icons'
+		firstGlyph: 0xE001
 	}, config);
 
 	// Validate config
+	if (!config.fontName) {
+		throw new gutil.PluginError(PLUGIN_NAME, 'Missing option "fontName"');
+	}
 	if (!consolidate[config.engine]) {
 		throw new gutil.PluginError(PLUGIN_NAME, 'Consolidate missing template engine "' + config.engine + '"');
 	}
@@ -87,7 +89,7 @@ function iconfontCSS(config) {
 		if (glyphMap.length) {
 			consolidate[config.engine](config.path, {
 					glyphs: glyphMap,
-					fontFamily: config.fontFamily,
+					fontName: config.fontName,
 					fontPath: config.fontPath
 				}, function(error, html) {
 					if (error) {
