@@ -26,6 +26,14 @@ function iconfontCSS(config) {
 		firstGlyph: 0xE001
 	}, config);
 
+	// Enable default stylesheet generators
+	if(!config.path) {
+		config.path = 'scss';
+	}
+	if(/^(scss|less|css)$/i.test(config.path)) {
+		config.path = __dirname + '/_icons.' + config.path;
+	}
+
 	// Validate config
 	if (!config.fontName) {
 		throw new gutil.PluginError(PLUGIN_NAME, 'Missing option "fontName"');

@@ -1,9 +1,10 @@
 @font-face {
 	font-family: "Icons";
-	src: url('./Icons.eot?') format('eot');
-	src: url('./Icons.eot?iefix') format('eot'),
+	src: url('./Icons.eot');
+	src: url('./Icons.eot?#iefix') format('eot'),
 		url('./Icons.woff') format('woff'),
-		url('./Icons.ttf') format('truetype');
+		url('./Icons.ttf') format('truetype'),
+		url('./Icons.svg#Icons') format('svg');
 }
 
 @mixin icon($filename) {
