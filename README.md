@@ -46,7 +46,9 @@ The name of the generated font family (required). **Important**: Has to be ident
 #### options.path
 Type: `String`
 
-The template path (optional, defaults to _icons.css provided with plugin).
+The template path (optional, defaults to `scss` provided with plugin).
+
+If set to `'scss'`, `'less'`, or `'css'`, default templates using SCSS, Less, or CSS will be generated.
 
 #### options.targetPath
 Type: `String`
