@@ -19,8 +19,8 @@ function iconfontCSS(config) {
 
 	// Set default values
 	config = _.merge({
-		path: __dirname + '/_icons.scss',
-		targetPath: '_icons.scss',
+		path: 'css',
+		targetPath: '_icons.css',
 		fontPath: './',
 		engine: 'lodash',
 		firstGlyph: 0xE001
@@ -31,7 +31,7 @@ function iconfontCSS(config) {
 		config.path = 'scss';
 	}
 	if(/^(scss|less|css)$/i.test(config.path)) {
-		config.path = __dirname + '/_icons.' + config.path;
+		config.path = __dirname + '/templates/_icons.' + config.path;
 	}
 
 	// Validate config

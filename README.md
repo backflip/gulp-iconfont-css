@@ -1,6 +1,11 @@
 # gulp-iconfont-css
 > Generate (S)CSS file for icon font created with [Gulp](http://gulpjs.com/)
 
+## Warning
+
+The latest version of [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont) emits a `codepoints` event (see https://github.com/nfroidure/gulp-iconfont/pull/4) which should likely be used instead of the workflow described below. However, it will continue to work as expected.
+The future of this plugin will be discussed in https://github.com/backflip/gulp-iconfont-css/issues/9.
+
 ## Usage
 
 First, install `gulp-iconfont-css` as a development dependency:
@@ -46,9 +51,7 @@ The name of the generated font family (required). **Important**: Has to be ident
 #### options.path
 Type: `String`
 
-The template path (optional, defaults to `scss` provided with plugin).
-
-If set to `'scss'`, `'less'`, or `'css'`, default templates using SCSS, Less, or CSS will be generated.
+The template path (optional, defaults to `css` template provided with plugin).If set to `'scss'` or `'less'`, the corresponding default template will be used. See [templates](tree/master/templates)
 
 #### options.targetPath
 Type: `String`
