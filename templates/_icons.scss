@@ -7,6 +7,18 @@
 		url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
 }
 
+%icon {
+	font-family: "<%= fontName %>";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+	text-decoration: none;
+	text-transform: none;
+}
+
 @mixin icon($filename) {
 	$char: "";
 <% _.each(glyphs, function(glyph) { %>
@@ -15,16 +27,8 @@
 	}<% }); %>
 
 	&:before {
+		@extend %icon;
 		content: $char;
-		font-family: "<%= fontName %>";
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-		font-style: normal;
-		font-variant: normal;
-		font-weight: normal;
-		// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
-		text-decoration: none;
-		text-transform: none;
 	}
 }
 
