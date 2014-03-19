@@ -19,16 +19,20 @@
 	text-transform: none;
 }
 
-@mixin icon($filename) {
+@function icon-char($filename) {
 	$char: "";
 <% _.each(glyphs, function(glyph) { %>
 	@if $filename == <%= glyph.fileName %> {
 		$char: "\<%= glyph.codePoint %>";
 	}<% }); %>
 
+	@return $char;
+}
+
+@mixin icon($filename) {
 	&:before {
 		@extend %icon;
-		content: $char;
+		content: icon-char($filename);
 	}
 }
 

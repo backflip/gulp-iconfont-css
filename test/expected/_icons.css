@@ -20,5 +20,10 @@
 }
 
 
-.icon-github:before { content: "\E001"; }
-.icon-twitter:before { content: "\E002"; }
+.icon-github:before {
+	content: "\E001";
+}
+
+.icon-twitter:before {
+	content: "\E002";
+}

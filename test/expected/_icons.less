@@ -19,14 +19,18 @@
 	text-transform: none;
 }
 
-.icon(@filename) {
-
+.icon-char(@filename) {
 	@github: "\E001";
 	@twitter: "\E002";
+	
+	content: @@filename;
+}
+
+.icon(@filename) {
 
 	&:before {
 		&:extend(.icon-base:before);
-		content: @@filename;
+		.icon-char(@filename);
 	}
 }
 

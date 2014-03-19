@@ -20,4 +20,7 @@
 }
 
 <% _.each(glyphs, function(glyph) { %>
-.icon-<%= glyph.fileName %>:before { content: "\<%= glyph.codePoint %>"; }<% }); %>
+.icon-<%= glyph.fileName %>:before {
+	content: "\<%= glyph.codePoint %>";
+}
+<% }); %>

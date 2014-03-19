@@ -19,13 +19,17 @@
 	text-transform: none;
 }
 
+.icon-char(@filename) {
+	<% _.each(glyphs, function(glyph) { %>@<%= glyph.fileName %>: "\<%= glyph.codePoint %>";
+	<% }); %>
+	content: @@filename;
+}
+
 .icon(@filename) {
-<% _.each(glyphs, function(glyph) { %>
-	@<%= glyph.fileName %>: "\<%= glyph.codePoint %>";<% }); %>
 
 	&:before {
 		&:extend(.icon-base:before);
-		content: @@filename;
+		.icon-char(@filename);
 	}
 }
 
