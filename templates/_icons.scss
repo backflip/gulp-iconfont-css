@@ -29,8 +29,10 @@
 	@return $char;
 }
 
-@mixin icon($filename) {
-	&:before {
+@mixin icon($filename, $position: left) {
+	$pseudo-element: if($position == left, before, after);
+
+	&:#{$pseudo-element} {
 		@extend %icon;
 		content: icon-char($filename);
 	}
