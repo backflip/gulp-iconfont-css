@@ -32,8 +32,8 @@
 	@return $char;
 }
 
-@mixin icon($filename) {
-	&:before {
+@mixin icon($filename, $insert: before) {
+	&:#{$insert} {
 		@extend %icon;
 		content: icon-char($filename);
 	}

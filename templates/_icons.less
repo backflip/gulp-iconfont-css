@@ -7,7 +7,7 @@
 		url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
 }
 
-.icon-base:before {
+.icon-base-pseudo {
 	font-family: "<%= fontName %>";
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -25,10 +25,11 @@
 	content: @@filename;
 }
 
-.icon(@filename) {
+.icon(@filename, @insert: before) {
+	@pseudo-selector: ~":@{insert}";
 
-	&:before {
-		&:extend(.icon-base:before);
+	&@{pseudo-selector} {
+		&:extend(.icon-base-pseudo);
 		.icon-char(@filename);
 	}
 }
