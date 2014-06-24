@@ -69,3 +69,8 @@ Type: `String`
 The template engine to use (optional, defaults to ```lodash```). 
 See https://github.com/visionmedia/consolidate.js/ for available engines. The engine has to be installed before using.
 
+#### options.cssClass
+Type: `String`
+
+The name of the generated CSS class/placeholder. Default is `icon`.
+

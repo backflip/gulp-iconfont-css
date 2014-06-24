@@ -15,7 +15,8 @@ function iconfontCSS(config) {
 		inputFilePrefix,
 		stream,
 		outputFile,
-		engine;
+		engine,
+		cssClass;
 
 	// Set default values
 	config = _.merge({
@@ -23,7 +24,8 @@ function iconfontCSS(config) {
 		targetPath: '_icons.css',
 		fontPath: './',
 		engine: 'lodash',
-		firstGlyph: 0xE001
+		firstGlyph: 0xE001,
+		cssClass: 'icon'
 	}, config);
 
 	// Enable default stylesheet generators
@@ -98,7 +100,8 @@ function iconfontCSS(config) {
 			consolidate[config.engine](config.path, {
 					glyphs: glyphMap,
 					fontName: config.fontName,
-					fontPath: config.fontPath
+					fontPath: config.fontPath,
+					cssClass: config.cssClass,
 				}, function(error, html) {
 					if (error) {
 						throw error;
