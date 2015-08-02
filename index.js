@@ -93,15 +93,14 @@ function iconfontCSS(config) {
 
 	stream._flush = function(cb) {
 		var content;
-
 		if (glyphMap.length) {
 			consolidate[config.engine](config.path, {
 					glyphs: glyphMap,
 					fontName: config.fontName,
 					fontPath: config.fontPath
-				}, function(error, html) {
-					if (error) {
-						throw error;
+				}, function(err, html) {
+					if (err) {
+						throw new gutil.PluginError(PLUGIN_NAME, 'Error in template: ' + err.message);
 					}
 
 					content = Buffer(html);
