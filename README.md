@@ -3,7 +3,7 @@
 
 ## Warning
 
-The latest version of [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont) emits a `codepoints` event (see https://github.com/nfroidure/gulp-iconfont/pull/4) which should likely be used instead of the workflow described below. However, it will continue to work as expected.
+Recent versions of [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont) emit a `glyphs` event (see [docs](https://github.com/nfroidure/gulp-iconfont/)) which should likely be used instead of the workflow described below. However, it will continue to work as expected.
 The future of this plugin will be discussed in https://github.com/backflip/gulp-iconfont-css/issues/9.
 
 ## Usage
@@ -14,7 +14,7 @@ First, install `gulp-iconfont-css` as a development dependency:
 npm install --save-dev gulp-iconfont-css
 ```
 
-Then, add it to your `gulpfile.js`:
+Then, add it to your `gulpfile.js`. **Important**: It has to be inserted *before* piping the files through `gulp-iconfont`.
 
 ```javascript
 var iconfont = require('gulp-iconfont');
@@ -68,4 +68,3 @@ Type: `String`
 
 The template engine to use (optional, defaults to ```lodash```). 
 See https://github.com/visionmedia/consolidate.js/ for available engines. The engine has to be installed before using.
-

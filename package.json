@@ -1,6 +1,6 @@
 {
   "name": "gulp-iconfont-css",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "Generate (S)CSS file for icon font created with Gulp",
   "license": "MIT",
   "repository": "backflip/gulp-iconfont-css",
@@ -21,13 +21,17 @@
     "css"
   ],
   "dependencies": {
-    "gulp-util": "~2.2.0",
-    "consolidate": "~0.10.0",
-    "lodash": "~2.4.1"
+    "gulp-util": "~3.0.6",
+    "consolidate": "~0.13.1",
+    "lodash": "~3.10.0"
+  },
+  "peerDependencies": {
+    "gulp-iconfont": "~4.0.0"
   },
   "devDependencies": {
     "mocha": "*",
-    "event-stream": "~3.1.0",
-    "gulp": "~3.5.2"
+    "event-stream": "~3.3.1",
+    "gulp": "~3.9.0",
+    "gulp-iconfont": "~4.0.0"
   }
 }

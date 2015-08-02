@@ -1,33 +1,44 @@
 var gulp = require('gulp'),
+	iconfont = require('gulp-iconfont'),
 	fs = require('fs'),
 	es = require('event-stream'),
 	assert = require('assert'),
 	iconfontCss = require('../');
 
 describe('gulp-iconfont-css', function() {
+	var fontName = 'Icons';
+
 	function testType(type, name) {
 		var resultsDir = __dirname + '/results_' + type;
 
 		it('should generate ' + name + ' file', function(done) {
 			gulp.src(__dirname + '/fixtures/icons/*.svg')
 				.pipe(iconfontCss({
-					fontName: 'Icons',
+					fontName: fontName,
 					path: type,
-					targetPath: '../_icons.' + type
+					targetPath: '../css/_icons.' + type,
+					fontPath: '../fonts/'
 				}).on('error', function(err) {
 					console.log(err);
 				}))
-				.pipe(gulp.dest(resultsDir + '/icons/'))
+				.pipe(iconfont({
+					fontName: fontName,
+					formats: ['ttf', 'eot', 'woff', 'svg']
+				}))
+				.pipe(gulp.dest(resultsDir + '/fonts/'))
 				.pipe(es.wait(function() {
 					assert.equal(
-						fs.readFileSync(resultsDir + '/_icons.' + type, 'utf8'),
+						fs.readFileSync(resultsDir + '/css/_icons.' + type, 'utf8'),
 						fs.readFileSync(__dirname + '/expected/_icons.' + type, 'utf8')
 					);
 
-					fs.unlinkSync(resultsDir + '/_icons.' + type);
-					fs.unlinkSync(resultsDir + '/icons/uE001-github.svg');
-					fs.unlinkSync(resultsDir + '/icons/uE002-twitter.svg');
-					fs.rmdirSync(resultsDir + '/icons/');
+					fs.unlinkSync(resultsDir + '/css/_icons.' + type);
+					fs.rmdirSync(resultsDir + '/css/');
+					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.ttf');
+					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.eot');
+					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.woff');
+					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.svg');
+					fs.rmdirSync(resultsDir + '/fonts/');
 					fs.rmdirSync(resultsDir);
 
 					done();
