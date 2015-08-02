@@ -7,7 +7,7 @@
 		url('./Icons.svg#Icons') format('svg');
 }
 
-%icon {
+@mixin icon-styles {
 	font-family: "Icons";
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -17,6 +17,10 @@
 	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
 	text-decoration: none;
 	text-transform: none;
+}
+
+%icon {
+	@include icon-styles;
 }
 
 @function icon-char($filename) {
@@ -32,9 +36,13 @@
 	@return $char;
 }
 
-@mixin icon($filename, $insert: before) {
+@mixin icon($filename, $insert: before, $extend: true) {
 	&:#{$insert} {
-		@extend %icon;
+		@if $extend {
+			@extend %icon;
+		} @else {
+			@include icon-styles;
+		}
 		content: icon-char($filename);
 	}
 }
