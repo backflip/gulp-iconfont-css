@@ -3,7 +3,7 @@
 
 ## Warning
 
-Recent versions of [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont) emit a `glyphs` event (see [docs](https://github.com/nfroidure/gulp-iconfont/)) which should likely be used instead of the workflow described below. However, it will continue to work as expected.
+Recent versions of [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont) emit a `glyphs` (or `codepoints` < 4.0.0) event (see [docs](https://github.com/nfroidure/gulp-iconfont/)) which should likely be used instead of the workflow described below. However, it will continue to work as expected.
 The future of this plugin will be discussed in https://github.com/backflip/gulp-iconfont-css/issues/9.
 
 ## Usage
