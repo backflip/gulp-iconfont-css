@@ -11,7 +11,7 @@ describe('gulp-iconfont-css', function() {
 	function testType(type, name) {
 		var resultsDir = __dirname + '/results_' + type;
 
-		it('should generate ' + name + ' file', function(done) {
+		it('should generate ' + name + ' file and fonts', function(done) {
 			gulp.src(__dirname + '/fixtures/icons/*.svg')
 				.pipe(iconfontCss({
 					fontName: fontName,
@@ -23,19 +23,28 @@ describe('gulp-iconfont-css', function() {
 				}))
 				.pipe(iconfont({
 					fontName: fontName,
-					formats: ['ttf', 'eot', 'woff', 'svg']
+					formats: ['woff', 'svg'],
+					timestamp: 1438703262
 				}))
 				.pipe(gulp.dest(resultsDir + '/fonts/'))
 				.pipe(es.wait(function() {
 					assert.equal(
 						fs.readFileSync(resultsDir + '/css/_icons.' + type, 'utf8'),
-						fs.readFileSync(__dirname + '/expected/_icons.' + type, 'utf8')
+						fs.readFileSync(__dirname + '/expected/css/_icons.' + type, 'utf8')
+					);
+
+					assert.equal(
+						fs.readFileSync(resultsDir + '/fonts/Icons.woff', 'utf8'),
+						fs.readFileSync(__dirname + '/expected/fonts/Icons.woff', 'utf8')
+					);
+
+					assert.equal(
+						fs.readFileSync(resultsDir + '/fonts/Icons.svg', 'utf8'),
+						fs.readFileSync(__dirname + '/expected/fonts/Icons.svg', 'utf8')
 					);
 
 					fs.unlinkSync(resultsDir + '/css/_icons.' + type);
 					fs.rmdirSync(resultsDir + '/css/');
-					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.ttf');
-					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.eot');
 					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.woff');
 					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.svg');
 					fs.rmdirSync(resultsDir + '/fonts/');
