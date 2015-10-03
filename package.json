@@ -25,9 +25,6 @@
     "consolidate": "~0.13.1",
     "lodash": "~3.10.0"
   },
-  "peerDependencies": {
-    "gulp-iconfont": "~4.0.0"
-  },
   "devDependencies": {
     "mocha": "*",
     "event-stream": "~3.3.1",
