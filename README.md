@@ -8,13 +8,13 @@ The future of this plugin will be discussed in https://github.com/backflip/gulp-
 
 ## Usage
 
-First, install `gulp-iconfont-css` as a development dependency:
+First, install `gulp-iconfont` and `gulp-iconfont-css` as development dependencies:
 
 ```shell
-npm install --save-dev gulp-iconfont-css
+npm install --save-dev gulp-iconfont gulp-iconfont-css
 ```
 
-Then, add it to your `gulpfile.js`. **Important**: It has to be inserted *before* piping the files through `gulp-iconfont`.
+Then, add it to your `gulpfile.js`. **Important**: `gulp-iconfont-css` has to be inserted *before* piping the files through `gulp-iconfont`.
 
 ```javascript
 var iconfont = require('gulp-iconfont');
