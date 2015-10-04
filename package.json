@@ -29,6 +29,6 @@
     "mocha": "*",
     "event-stream": "~3.3.1",
     "gulp": "~3.9.0",
-    "gulp-iconfont": "~4.0.0"
+    "gulp-iconfont": "~5.0.0"
   }
 }
