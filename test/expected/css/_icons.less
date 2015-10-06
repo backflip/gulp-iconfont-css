@@ -7,7 +7,7 @@
 		url('../fonts/Icons.svg#Icons') format('svg');
 }
 
-.icon-base-pseudo {
+.custom-icon-base-pseudo {
 	font-family: "Icons";
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -19,25 +19,25 @@
 	text-transform: none;
 }
 
-.icon-char(@filename) {
+.custom-icon-char(@filename) {
 	@github: "\E001";
 	@twitter: "\E002";
 	
 	content: @@filename;
 }
 
-.icon(@filename, @insert: before) {
+.custom-icon(@filename, @insert: before) {
 	@pseudo-selector: ~":@{insert}";
 
 	&@{pseudo-selector} {
-		&:extend(.icon-base-pseudo);
-		.icon-char(@filename);
+		&:extend(.custom-icon-base-pseudo);
+		.custom-icon-char(@filename);
 	}
 }
 
-.icon-github {
-	.icon(github);
+.custom-icon-github {
+	.custom-icon(github);
 }
-.icon-twitter {
-	.icon(twitter);
+.custom-icon-twitter {
+	.custom-icon(twitter);
 }

@@ -63,6 +63,11 @@ Type: `String`
 
 Directory of font files relative to generated (S)CSS file (optional, defaults to ```./```).
 
+#### options.cssClass
+Type: `String`
+
+Name of the generated CSS class/placeholder. Used for mixins and functions, too. See https://github.com/backflip/gulp-iconfont-css/tree/master/templates. Default is `icon`.
+
 #### options.engine
 Type: `String`
 

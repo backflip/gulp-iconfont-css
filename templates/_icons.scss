@@ -7,7 +7,7 @@
 		url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
 }
 
-@mixin icon-styles {
+@mixin <%= cssClass%>-styles {
 	font-family: "<%= fontName %>";
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -19,11 +19,11 @@
 	text-transform: none;
 }
 
-%icon {
-	@include icon-styles;
+%<%= cssClass%> {
+	@include <%= cssClass%>-styles;
 }
 
-@function icon-char($filename) {
+@function <%= cssClass%>-char($filename) {
 	$char: "";
 <% _.each(glyphs, function(glyph) { %>
 	@if $filename == <%= glyph.fileName %> {
@@ -33,18 +33,18 @@
 	@return $char;
 }
 
-@mixin icon($filename, $insert: before, $extend: true) {
+@mixin <%= cssClass%>($filename, $insert: before, $extend: true) {
 	&:#{$insert} {
 		@if $extend {
-			@extend %icon;
+			@extend %<%= cssClass%>;
 		} @else {
-			@include icon-styles;
+			@include <%= cssClass%>-styles;
 		}
-		content: icon-char($filename);
+		content: <%= cssClass%>-char($filename);
 	}
 }
 
-<% _.each(glyphs, function(glyph) { %>.icon-<%= glyph.fileName %> {
-	@include icon(<%= glyph.fileName %>);
+<% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
+	@include <%= cssClass%>(<%= glyph.fileName %>);
 }
 <% }); %>

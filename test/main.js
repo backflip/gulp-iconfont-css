@@ -17,7 +17,8 @@ describe('gulp-iconfont-css', function() {
 					fontName: fontName,
 					path: type,
 					targetPath: '../css/_icons.' + type,
-					fontPath: '../fonts/'
+					fontPath: '../fonts/',
+					cssClass: 'custom-icon'
 				}).on('error', function(err) {
 					console.log(err);
 				}))
