@@ -24,7 +24,7 @@ describe('gulp-iconfont-css', function() {
 				}))
 				.pipe(iconfont({
 					fontName: fontName,
-					formats: ['woff', 'svg'],
+					formats: ['woff2', 'woff', 'svg'],
 					timestamp: 1438703262
 				}))
 				.pipe(gulp.dest(resultsDir + '/fonts/'))
@@ -32,6 +32,11 @@ describe('gulp-iconfont-css', function() {
 					assert.equal(
 						fs.readFileSync(resultsDir + '/css/_icons.' + type, 'utf8'),
 						fs.readFileSync(__dirname + '/expected/css/_icons.' + type, 'utf8')
+					);
+
+					assert.equal(
+						fs.readFileSync(resultsDir + '/fonts/Icons.woff2', 'utf8'),
+						fs.readFileSync(__dirname + '/expected/fonts/Icons.woff2', 'utf8')
 					);
 
 					assert.equal(
@@ -46,6 +51,7 @@ describe('gulp-iconfont-css', function() {
 
 					fs.unlinkSync(resultsDir + '/css/_icons.' + type);
 					fs.rmdirSync(resultsDir + '/css/');
+					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.woff2');
 					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.woff');
 					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.svg');
 					fs.rmdirSync(resultsDir + '/fonts/');
