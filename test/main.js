@@ -3,66 +3,100 @@ var gulp = require('gulp'),
 	fs = require('fs'),
 	es = require('event-stream'),
 	assert = require('assert'),
+	del = require('del'),
+	objectAssign = require('object-assign'),
 	iconfontCss = require('../');
 
-describe('gulp-iconfont-css', function() {
-	var fontName = 'Icons';
+var fontName = 'Icons',
+	resultsDir = __dirname + '/results';
 
-	function testType(type, name) {
-		var resultsDir = __dirname + '/results_' + type;
+function run(type, dest, options) {
+	var config = objectAssign({
+			fontName: fontName,
+			path: type,
+			targetPath: '../css/_icons.' + type,
+			fontPath: '../fonts/',
+			cssClass: 'custom-icon'
+		}, options);
 
-		it('should generate ' + name + ' file and fonts', function(done) {
-			gulp.src(__dirname + '/fixtures/icons/*.svg')
-				.pipe(iconfontCss({
-					fontName: fontName,
-					path: type,
-					targetPath: '../css/_icons.' + type,
-					fontPath: '../fonts/',
-					cssClass: 'custom-icon'
-				}).on('error', function(err) {
-					console.log(err);
-				}))
-				.pipe(iconfont({
-					fontName: fontName,
-					formats: ['woff2', 'woff', 'svg'],
-					timestamp: 1438703262
-				}))
-				.pipe(gulp.dest(resultsDir + '/fonts/'))
-				.pipe(es.wait(function() {
-					assert.equal(
-						fs.readFileSync(resultsDir + '/css/_icons.' + type, 'utf8'),
-						fs.readFileSync(__dirname + '/expected/css/_icons.' + type, 'utf8')
-					);
+	return gulp.src(__dirname + '/fixtures/icons/*.svg')
+		.pipe(iconfontCss(config).on('error', function(err) {
+			console.log(err);
+		}))
+		.pipe(iconfont({
+			fontName: fontName,
+			formats: ['woff2', 'woff', 'svg'],
+			timestamp: 1438703262
+		}))
+		.pipe(gulp.dest(dest + '/fonts/'));
+}
 
-					assert.equal(
-						fs.readFileSync(resultsDir + '/fonts/Icons.woff2', 'utf8'),
-						fs.readFileSync(__dirname + '/expected/fonts/Icons.woff2', 'utf8')
-					);
+function cleanUp(dest, done) {
+	del(dest).then(function() {
+		done();
+	});
+}
 
-					assert.equal(
-						fs.readFileSync(resultsDir + '/fonts/Icons.woff', 'utf8'),
-						fs.readFileSync(__dirname + '/expected/fonts/Icons.woff', 'utf8')
-					);
+function testType(type, name) {
+	it('should generate ' + name + ' file and fonts', function(done) {
+		var dest = resultsDir + '_' + type;
 
-					assert.equal(
-						fs.readFileSync(resultsDir + '/fonts/Icons.svg', 'utf8'),
-						fs.readFileSync(__dirname + '/expected/fonts/Icons.svg', 'utf8')
-					);
+		run(type, dest)
+			.pipe(es.wait(function() {
+				assert.equal(
+					fs.readFileSync(dest + '/css/_icons.' + type, 'utf8'),
+					fs.readFileSync(__dirname + '/expected/type/css/_icons.' + type, 'utf8')
+				);
 
-					fs.unlinkSync(resultsDir + '/css/_icons.' + type);
-					fs.rmdirSync(resultsDir + '/css/');
-					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.woff2');
-					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.woff');
-					fs.unlinkSync(resultsDir + '/fonts/' + fontName + '.svg');
-					fs.rmdirSync(resultsDir + '/fonts/');
-					fs.rmdirSync(resultsDir);
+				assert.equal(
+					fs.readFileSync(dest + '/fonts/Icons.woff2', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/type/fonts/Icons.woff2', 'utf8')
+				);
 
+				assert.equal(
+					fs.readFileSync(dest + '/fonts/Icons.woff', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/type/fonts/Icons.woff', 'utf8')
+				);
+
+				assert.equal(
+					fs.readFileSync(dest + '/fonts/Icons.svg', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/type/fonts/Icons.svg', 'utf8')
+				);
+
+				cleanUp(dest, done);
+			}));
+	});
+}
+
+function testCodepoint() {
+	it('glyphs should start with custom code point', function(done) {
+		var dest = resultsDir + '_codepoint';
+
+		run('css', dest, {
+			firstGlyph: 0xE002
+		})
+			.pipe(es.wait(function() {
+				assert.equal(
+					fs.readFileSync(dest + '/css/_icons.css', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/codepoint/css/_icons.css', 'utf8')
+				);
+
+				assert.equal(
+					fs.readFileSync(dest + '/fonts/Icons.svg', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/codepoint/fonts/Icons.svg', 'utf8')
+				);
+
+				del(dest).then(function() {
 					done();
-				}));
-		});
-	}
+				});
+			}));
+	});
+}
 
+describe('gulp-iconfont-css', function() {
 	testType('scss', 'SCSS');
 	testType('less', 'Less');
 	testType('css', 'CSS');
+
+	testCodepoint();
 });
