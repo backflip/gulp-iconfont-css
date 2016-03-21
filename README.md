@@ -68,6 +68,16 @@ Type: `String`
 
 Name of the generated CSS class/placeholder. Used for mixins and functions, too. See https://github.com/backflip/gulp-iconfont-css/tree/master/templates. Default is `icon`.
 
+#### options.firstGlyph
+Type: `String`
+
+Which unicode character to start with. Defaults to `0xE001`.
+
+#### options.fixedCodepoints
+Type: `Object|Boolean`
+
+Whether to use custom unicode characters instead of just counting upwards from `firstGlyph`. Example: https://github.com/backflip/gulp-iconfont-css/blob/master/test/main.js#L101-L104. Defaults to `false`.
+
 #### options.engine
 Type: `String`
 
