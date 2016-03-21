@@ -25,6 +25,7 @@ function iconfontCSS(config) {
 		fontPath: './',
 		engine: 'lodash',
 		firstGlyph: 0xE001,
+		fixedCodepoints: false,
 		cssClass: 'icon'
 	}, config);
 
@@ -77,7 +78,7 @@ function iconfontCSS(config) {
 
 		fileName = path.basename(file.path, '.svg');
 		
-		if (config.fixedCodepoints && config.fixedCodepoints[fileName]){
+		if (config.fixedCodepoints && config.fixedCodepoints[fileName]) {
 			currentCodePoint = config.fixedCodepoints[fileName].toString(16).toUpperCase();
 		} else {
 			currentCodePoint = (currentGlyph++).toString(16).toUpperCase();
