@@ -58,6 +58,8 @@ function iconfontCSS(config) {
 	});
 
 	stream._transform = function(file, unused, cb) {
+		var fileName;
+
 		if (file.isNull()) {
 			this.push(file);
 			return cb();
@@ -73,7 +75,7 @@ function iconfontCSS(config) {
 			});
 		}
 
-		var fileName = path.basename(file.path, '.svg');
+		fileName = path.basename(file.path, '.svg');
 		
 		if (config.fixedCodepoints && config.fixedCodepoints[fileName]){
 			currentCodePoint = config.fixedCodepoints[fileName].toString(16).toUpperCase();
