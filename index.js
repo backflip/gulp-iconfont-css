@@ -73,11 +73,17 @@ function iconfontCSS(config) {
 			});
 		}
 
-		currentCodePoint = currentGlyph.toString(16).toUpperCase();
+		var fileName = path.basename(file.path, '.svg');
+		
+		if (config.fixedCodepoints && config.fixedCodepoints[fileName]){
+			currentCodePoint = config.fixedCodepoints[fileName].toString(16).toUpperCase();
+		} else {
+			currentCodePoint = (currentGlyph++).toString(16).toUpperCase();
+		}
 
 		// Add glyph
 		glyphMap.push({
-			fileName: path.basename(file.path, '.svg'),
+			fileName: fileName,
 			codePoint: currentCodePoint
 		});
 
@@ -85,9 +91,6 @@ function iconfontCSS(config) {
 		inputFilePrefix = 'u' + currentCodePoint + '-';
 
 		file.path = path.dirname(file.path) + '/' + inputFilePrefix + path.basename(file.path);
-
-		// Increase counter
-		currentGlyph++;
 
 		this.push(file);
 		cb();
