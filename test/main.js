@@ -68,9 +68,9 @@ function testType(type, name) {
 	});
 }
 
-function testCodepoint() {
+function testCodepointFirst() {
 	it('glyphs should start with custom code point', function(done) {
-		var dest = resultsDir + '_codepoint';
+		var dest = resultsDir + '_codepoint_first';
 
 		run('css', dest, {
 			firstGlyph: 0xE002
@@ -78,12 +78,40 @@ function testCodepoint() {
 			.pipe(es.wait(function() {
 				assert.equal(
 					fs.readFileSync(dest + '/css/_icons.css', 'utf8'),
-					fs.readFileSync(__dirname + '/expected/codepoint/css/_icons.css', 'utf8')
+					fs.readFileSync(__dirname + '/expected/codepoint_first/css/_icons.css', 'utf8')
 				);
 
 				assert.equal(
 					fs.readFileSync(dest + '/fonts/Icons.svg', 'utf8'),
-					fs.readFileSync(__dirname + '/expected/codepoint/fonts/Icons.svg', 'utf8')
+					fs.readFileSync(__dirname + '/expected/codepoint_first/fonts/Icons.svg', 'utf8')
+				);
+
+				del(dest).then(function() {
+					done();
+				});
+			}));
+	});
+}
+
+function testCodepointFixed() {
+	it('glyphs should start with custom code point', function(done) {
+		var dest = resultsDir + '_codepoint_first';
+
+		run('css', dest, {
+			fixedCodepoints: {
+				github: 0xE010,
+				twitter: 0xE020
+			}
+		})
+			.pipe(es.wait(function() {
+				assert.equal(
+					fs.readFileSync(dest + '/css/_icons.css', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/codepoint_fixed/css/_icons.css', 'utf8')
+				);
+
+				assert.equal(
+					fs.readFileSync(dest + '/fonts/Icons.svg', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/codepoint_fixed/fonts/Icons.svg', 'utf8')
 				);
 
 				del(dest).then(function() {
@@ -98,5 +126,7 @@ describe('gulp-iconfont-css', function() {
 	testType('less', 'Less');
 	testType('css', 'CSS');
 
-	testCodepoint();
+	testCodepointFirst();
+	
+	testCodepointFixed();
 });
