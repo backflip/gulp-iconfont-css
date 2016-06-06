@@ -86,9 +86,7 @@ function testCodepointFirst() {
 					fs.readFileSync(__dirname + '/expected/codepoint_first/fonts/Icons.svg', 'utf8')
 				);
 
-				del(dest).then(function() {
-					done();
-				});
+				cleanUp(dest, done);
 			}));
 	});
 }
@@ -114,12 +112,29 @@ function testCodepointFixed() {
 					fs.readFileSync(__dirname + '/expected/codepoint_fixed/fonts/Icons.svg', 'utf8')
 				);
 
-				del(dest).then(function() {
-					done();
-				});
+				cleanUp(dest, done);
 			}));
 	});
 }
+
+function testCacheBuster() {
+	it('should use given cache buster as query param', function(done) {
+		var dest = resultsDir + '_cache_buster';
+
+		run('css', dest, {
+			cacheBuster: 'v0.1.2'
+		})
+			.pipe(es.wait(function() {
+				assert.equal(
+					fs.readFileSync(dest + '/css/_icons.css', 'utf8'),
+					fs.readFileSync(__dirname + '/expected/cache_buster/css/_icons.css', 'utf8')
+				);
+
+				cleanUp(dest, done);
+			}));
+	});
+}
+
 
 describe('gulp-iconfont-css', function() {
 	testType('scss', 'SCSS');
@@ -127,6 +142,6 @@ describe('gulp-iconfont-css', function() {
 	testType('css', 'CSS');
 
 	testCodepointFirst();
-	
 	testCodepointFixed();
+	testCacheBuster();
 });
