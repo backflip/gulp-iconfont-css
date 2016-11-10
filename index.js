@@ -26,7 +26,7 @@ function iconfontCSS(config) {
 		targetPath: '_icons.css',
 		fontPath: './',
 		engine: 'lodash',
-		formats: ['eot', 'woff2', 'woff', 'ttf', 'svg'],
+		formats: availableFormats,
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
 		cssClass: 'icon'
