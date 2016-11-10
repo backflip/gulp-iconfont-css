@@ -18,12 +18,15 @@ function iconfontCSS(config) {
 		engine,
 		cssClass;
 
+	var availableFormats = ['eot', 'woff2', 'woff', 'ttf', 'svg'];
+
 	// Set default values
 	config = _.merge({
 		path: 'css',
 		targetPath: '_icons.css',
 		fontPath: './',
 		engine: 'lodash',
+		formats: ['eot', 'woff2', 'woff', 'ttf', 'svg'],
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
 		cssClass: 'icon'
@@ -100,13 +103,42 @@ function iconfontCSS(config) {
 	};
 
 	stream._flush = function(cb) {
-		var content;
+		var content,
+			formatTypes = [],
+			formatModifiers = {
+				'eot': { extension : "eot?#iefix" },
+				'ttf': { format : 'truetype' },
+				'svg': { extension : 'svg#'+config.fontName }
+			};
+
+		config.formats = _.intersection(availableFormats, config.formats);
+
+		_.each(config.formats, function(format) {
+			var ext = formatModifiers[format] && formatModifiers[format]["extension"]
+				? formatModifiers[format]["extension"]
+				: format;
+
+			var format = formatModifiers[format] && formatModifiers[format]["format"]
+				? formatModifiers[format]["format"]
+				: format;
+
+			formatTypes.push({
+				'url': config.fontPath + config.fontName + "." + ext,
+				'format' : format
+			});
+		});
+
+		formatTypes = _.map(formatTypes, function(type) {
+			return "url('"+type.url+"') format('"+type.format+"')"
+		});
+
 		if (glyphMap.length) {
 			consolidate[config.engine](config.path, {
 					glyphs: glyphMap,
 					fontName: config.fontName,
 					fontPath: config.fontPath,
-					cssClass: config.cssClass
+					cssClass: config.cssClass,
+					formatTypes: formatTypes
 				}, function(err, html) {
 					if (err) {
 						throw new gutil.PluginError(PLUGIN_NAME, 'Error in template: ' + err.message);
