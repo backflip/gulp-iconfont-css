@@ -112,7 +112,7 @@ function iconfontCSS(config) {
 						throw new gutil.PluginError(PLUGIN_NAME, 'Error in template: ' + err.message);
 					}
 
-					content = Buffer(html);
+					content = Buffer.from(html);
 
 					if (outputFile.isBuffer()) {
 						outputFile.contents = content;
