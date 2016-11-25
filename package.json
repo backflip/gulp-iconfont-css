@@ -1,5 +1,5 @@
 {
-  "name": "gulp-iconfont-css",
+  "name": "gulp-iconfont-css-fork",
   "version": "2.1.0",
   "description": "Generate (S)CSS file for icon font created with Gulp",
   "license": "MIT",
