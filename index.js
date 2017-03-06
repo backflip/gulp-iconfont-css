@@ -71,7 +71,7 @@ function iconfontCSS(config) {
 			outputFile = new gutil.File({
 				base: file.base,
 				cwd: file.cwd,
-				path: path.join(file.base, config.targetPath),
+				path: path.resolve(file.base, config.targetPath),
 				contents: file.isBuffer() ? new Buffer(0) : new Stream.PassThrough()
 			});
 		}
