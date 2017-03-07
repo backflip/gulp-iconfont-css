@@ -26,7 +26,8 @@ function iconfontCSS(config) {
 		engine: 'lodash',
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
-		cssClass: 'icon'
+		cssClass: 'icon',
+		timestamp: Math.round(Date.now() / 1000)
 	}, config);
 
 	// Enable default stylesheet generators
@@ -106,7 +107,8 @@ function iconfontCSS(config) {
 					glyphs: glyphMap,
 					fontName: config.fontName,
 					fontPath: config.fontPath,
-					cssClass: config.cssClass
+					cssClass: config.cssClass,
+					timestamp: config.timestamp
 				}, function(err, html) {
 					if (err) {
 						throw new gutil.PluginError(PLUGIN_NAME, 'Error in template: ' + err.message);
