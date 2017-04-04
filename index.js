@@ -27,7 +27,7 @@ function iconfontCSS(config) {
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
 		cssClass: 'icon',
-		cacheBuster: null
+		cacheBuster: ''
 	}, config);
 
 	// Enable default stylesheet generators
@@ -103,15 +103,13 @@ function iconfontCSS(config) {
 	stream._flush = function(cb) {
 		var content;
 		if (glyphMap.length) {
-			var cacheBuster = config.cacheBuster || '';
-			var cacheBusterQueryString = cacheBuster ? '?' + cacheBuster : '';
 			consolidate[config.engine](config.path, {
 					glyphs: glyphMap,
 					fontName: config.fontName,
 					fontPath: config.fontPath,
 					cssClass: config.cssClass,
-					cacheBuster: cacheBuster,
-					cacheBusterQueryString: cacheBusterQueryString
+					cacheBuster: config.cacheBuster,
+					cacheBusterQueryString: config.cacheBuster ? '?' + config.cacheBuster : ''
 				}, function(err, html) {
 					if (err) {
 						throw new gutil.PluginError(PLUGIN_NAME, 'Error in template: ' + err.message);
