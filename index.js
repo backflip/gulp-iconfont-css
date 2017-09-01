@@ -27,6 +27,7 @@ function iconfontCSS(config) {
 		engine: 'lodash',
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
+		filePrefix: false,
 		cssClass: 'icon'
 	}, config);
 
@@ -92,7 +93,7 @@ function iconfontCSS(config) {
 		});
 
 		// Prepend codePoint to input file path for gulp-iconfont
-		inputFilePrefix = 'u' + currentCodePoint + '-';
+		inputFilePrefix = config.filePrefix ? 'u' + currentCodePoint + '-' : '';
 
 		file.path = path.dirname(file.path) + '/' + inputFilePrefix + path.basename(file.path);
 
