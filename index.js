@@ -23,6 +23,7 @@ function iconfontCSS(config) {
 		path: 'css',
 		targetPath: '_icons.css',
 		fontPath: './',
+		fileName: config.fontName,
 		engine: 'lodash',
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
@@ -106,6 +107,7 @@ function iconfontCSS(config) {
 					glyphs: glyphMap,
 					fontName: config.fontName,
 					fontPath: config.fontPath,
+					fileName: config.fileName,
 					cssClass: config.cssClass
 				}, function(err, html) {
 					if (err) {
