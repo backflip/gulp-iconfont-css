@@ -10,13 +10,18 @@ var gulp = require('gulp'),
 var fontName = 'Icons',
 	resultsDir = __dirname + '/results';
 
+var aliases = {
+	github: ['git']
+}
+
 function run(type, dest, options) {
 	var config = objectAssign({
 			fontName: fontName,
 			path: type,
 			targetPath: '../css/_icons.' + type,
 			fontPath: '../fonts/',
-			cssClass: 'custom-icon'
+			cssClass: 'custom-icon',
+			aliases: aliases
 		}, options);
 
 	return gulp.src(__dirname + '/fixtures/icons/*.svg')

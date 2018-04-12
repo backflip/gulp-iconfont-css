@@ -71,5 +71,10 @@ Name of the generated CSS class/placeholder. Used for mixins and functions, too.
 #### options.engine
 Type: `String`
 
+#### options.aliases
+Type: `Object`
+
+Use if you want multiple class names for the same font/svg value ie. use the github svg as .github or .git
+
 The template engine to use (optional, defaults to ```lodash```). 
 See https://github.com/visionmedia/consolidate.js/ for available engines. The engine has to be installed before using.

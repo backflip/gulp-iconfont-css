@@ -30,6 +30,9 @@
 	@if $filename == github {
 		$char: "\E001";
 	}
+	@if $filename == git {
+		$char: "\E001";
+	}
 	@if $filename == twitter {
 		$char: "\E002";
 	}
@@ -49,6 +52,9 @@
 }
 
 .custom-icon-github {
+	@include custom-icon(github);
+}
+.custom-icon-git {
 	@include custom-icon(github);
 }
 .custom-icon-twitter {

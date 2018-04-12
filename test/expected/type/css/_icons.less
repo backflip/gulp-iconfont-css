@@ -22,6 +22,7 @@
 
 .custom-icon-char(@filename) {
 	@github: "\E001";
+	@git: "\E001";
 	@twitter: "\E002";
 	
 	content: @@filename;
@@ -37,6 +38,9 @@
 }
 
 .custom-icon-github {
+	.custom-icon(github);
+}
+.custom-icon-git {
 	.custom-icon(github);
 }
 .custom-icon-twitter {

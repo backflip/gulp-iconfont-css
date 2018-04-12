@@ -26,7 +26,8 @@ function iconfontCSS(config) {
 		engine: 'lodash',
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
-		cssClass: 'icon'
+		cssClass: 'icon',
+		aliases: {}
 	}, config);
 
 	// Enable default stylesheet generators
@@ -89,6 +90,16 @@ function iconfontCSS(config) {
 			fileName: fileName,
 			codePoint: currentCodePoint
 		});
+
+		if (config.aliases[fileName]) {
+			_.each(config.aliases[fileName], function(_alias) {
+				glyphMap.push({
+					fileName: _alias,
+					codePoint: currentCodePoint,
+					aliasRoot: fileName // used for less and scss
+				});
+			})
+		}
 
 		// Prepend codePoint to input file path for gulp-iconfont
 		inputFilePrefix = 'u' + currentCodePoint + '-';
