@@ -26,7 +26,8 @@ function iconfontCSS(config) {
 		engine: 'lodash',
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
-		cssClass: 'icon'
+		cssClass: 'icon',
+		cacheBuster: ''
 	}, config);
 
 	// Enable default stylesheet generators
@@ -77,7 +78,7 @@ function iconfontCSS(config) {
 		}
 
 		fileName = path.basename(file.path, '.svg');
-		
+
 		if (config.fixedCodepoints && config.fixedCodepoints[fileName]) {
 			currentCodePoint = config.fixedCodepoints[fileName].toString(16).toUpperCase();
 		} else {
@@ -106,7 +107,9 @@ function iconfontCSS(config) {
 					glyphs: glyphMap,
 					fontName: config.fontName,
 					fontPath: config.fontPath,
-					cssClass: config.cssClass
+					cssClass: config.cssClass,
+					cacheBuster: config.cacheBuster,
+					cacheBusterQueryString: config.cacheBuster ? '?' + config.cacheBuster : ''
 				}, function(err, html) {
 					if (err) {
 						throw new gutil.PluginError(PLUGIN_NAME, 'Error in template: ' + err.message);
