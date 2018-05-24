@@ -46,6 +46,6 @@
 }
 
 <% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
-	@include <%= cssClass%>(<%= glyph.aliasRoot ? glyph.aliasRoot : glyph.fileName %>);
+	@include <%= cssClass%>(<%= glyph.originalFileName ? glyph.originalFileName : glyph.fileName %>);
 }
 <% }); %>

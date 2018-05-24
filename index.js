@@ -96,7 +96,7 @@ function iconfontCSS(config) {
 				glyphMap.push({
 					fileName: _alias,
 					codePoint: currentCodePoint,
-					aliasRoot: fileName // used for less and scss
+					originalFileName: fileName // used for less and scss
 				});
 			})
 		}
