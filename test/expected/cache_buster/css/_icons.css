@@ -1,0 +1,30 @@
+@font-face {
+	font-family: "Icons";
+	src: url('../fonts/Icons.eot?v0.1.2');
+	src: url('../fonts/Icons.eot?v0.1.2#iefix') format('eot'),
+		url('../fonts/Icons.woff2?v0.1.2') format('woff2'),
+		url('../fonts/Icons.woff?v0.1.2') format('woff'),
+		url('../fonts/Icons.ttf?v0.1.2') format('truetype'),
+		url('../fonts/Icons.svg?v0.1.2#Icons') format('svg');
+}
+
+.custom-icon:before {
+	font-family: "Icons";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.custom-icon-github:before {
+	content: "\E001";
+}
+
+.custom-icon-twitter:before {
+	content: "\E002";
+}
