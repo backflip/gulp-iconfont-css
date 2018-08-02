@@ -1,6 +1,6 @@
 {
   "name": "gulp-iconfont-css",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Generate (S)CSS file for icon font created with Gulp",
   "license": "MIT",
   "repository": "backflip/gulp-iconfont-css",
