@@ -27,6 +27,7 @@ function iconfontCSS(config) {
 		firstGlyph: 0xE001,
 		fixedCodepoints: false,
 		cssClass: 'icon',
+		aliases: {},
 		cacheBuster: ''
 	}, config);
 
@@ -90,6 +91,16 @@ function iconfontCSS(config) {
 			fileName: fileName,
 			codePoint: currentCodePoint
 		});
+
+		if (config.aliases[fileName]) {
+			_.each(config.aliases[fileName], function(_alias) {
+				glyphMap.push({
+					fileName: _alias,
+					codePoint: currentCodePoint,
+					originalFileName: fileName // used for less and scss
+				});
+			})
+		}
 
 		// Prepend codePoint to input file path for gulp-iconfont
 		inputFilePrefix = 'u' + currentCodePoint + '-';

@@ -25,6 +25,10 @@
 	content: "\E001";
 }
 
+.custom-icon-git:before {
+	content: "\E001";
+}
+
 .custom-icon-twitter:before {
 	content: "\E002";
 }
