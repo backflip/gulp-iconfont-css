@@ -1,0 +1,50 @@
+@font-face
+    font-family: "Icons"
+    src: url('../fonts/Icons.eot')
+    src: url('../fonts/Icons.eot?#iefix') format('eot'), url('../fonts/Icons.woff') format('woff'), url('../fonts/Icons.ttf') format('truetype'), url('../fonts/Icons.svg#Icons') format('svg')
+
+@mixin custom-icon-styles
+    font-family: "Icons"
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    font-style: normal
+    font-variant: normal
+    font-weight: normal
+    // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+    text-decoration: none
+    text-transform: none
+
+
+%custom-icon
+    +custom-icon-styles
+
+@function custom-icon-char($filename)
+    $char: ""
+
+    @if $filename == github
+        $char: "\E001"
+    
+    @if $filename == git
+        $char: "\E001"
+    
+    @if $filename == twitter
+        $char: "\E002"
+    
+    @return $char
+
+
+@mixin custom-icon($filename, $insert: before, $extend: true)
+    &:#{$insert}
+        @if $extend
+            @extend %custom-icon
+        @else
+            +custom-icon-styles
+        
+        content: custom-icon-char($filename)
+
+.custom-icon-github
+    +custom-icon(github)
+.custom-icon-git
+    +custom-icon(git)
+.custom-icon-twitter
+    +custom-icon(twitter)

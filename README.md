@@ -4,7 +4,6 @@
 ## Warning
 
 Recent versions of [gulp-iconfont](https://github.com/nfroidure/gulp-iconfont) emit a `glyphs` (or `codepoints` < 4.0.0) event (see [docs](https://github.com/nfroidure/gulp-iconfont/)) which should likely be used instead of the workflow described below. However, it will continue to work as expected.
-The future of this plugin will be discussed in https://github.com/backflip/gulp-iconfont-css/issues/9.
 
 ## Usage
 
@@ -46,17 +45,17 @@ gulp.task('iconfont', function(){
 #### options.fontName
 Type: `String`
 
-The name of the generated font family (required). **Important**: Has to be identical to iconfont's ```fontName``` option.
+The name of the generated font family (required). **Important**: Has to be identical to iconfont's `fontName` option.
 
 #### options.path
 Type: `String`
 
-The template path (optional, defaults to `css` template provided with plugin).If set to `'scss'` or `'less'`, the corresponding default template will be used. See [templates](templates)
+The template path (optional, defaults to `css` template provided with plugin). If set to `scss`,  `sass` or `less`, the corresponding default template will be used. See [templates](templates).
 
 #### options.targetPath
 Type: `String`
 
-The path where the (S)CSS file should be saved, relative to the path used in ```gulp.dest()``` (optional, defaults to ```_icons.css```). Depennding on the path, it might be necessary to set the ```base``` option, see https://github.com/backflip/gulp-iconfont-css/issues/16.
+The path where the (S)CSS file should be saved, relative to the path used in `gulp.dest()` (optional, defaults to `_icons.css`). Depennding on the path, it might be necessary to set the `base` option, see https://github.com/backflip/gulp-iconfont-css/issues/16.
 
 #### options.fontPath
 Type: `String`
@@ -76,7 +75,7 @@ Type: `Object`
 
 Use if you want multiple class names for the same font/svg value ie. use the github svg as .github or .git
 
-The template engine to use (optional, defaults to ```lodash```). 
+The template engine to use (optional, defaults to `lodash`). 
 See https://github.com/visionmedia/consolidate.js/ for available engines. The engine has to be installed before using.
 
 #### options.cacheBuster

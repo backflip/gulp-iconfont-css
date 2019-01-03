@@ -36,7 +36,7 @@ function iconfontCSS(config) {
 	if(!config.path) {
 		config.path = 'scss';
 	}
-	if(/^(scss|less|css)$/i.test(config.path)) {
+	if(/^(scss|sass|less|css)$/i.test(config.path)) {
 		config.path = __dirname + '/templates/_icons.' + config.path;
 	}
 
