@@ -6,7 +6,7 @@
   "repository": "backflip/gulp-iconfont-css",
   "author": "Thomas Jaggi, Nicolas Froidure",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6"
   },
   "scripts": {
     "test": "mocha"
@@ -22,7 +22,6 @@
   ],
   "dependencies": {
     "consolidate": "^0.15.1",
-    "gulp-util": "^3.0.6",
     "lodash": "^4.17.11",
     "plugin-error": "^1.0.1",
     "vinyl": "^2.2.0"
