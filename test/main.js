@@ -98,7 +98,7 @@ function testCodepointFirst() {
 
 function testCodepointFixed() {
 	it('glyphs should start with custom code point', function(done) {
-		var dest = resultsDir + '_codepoint_first';
+		var dest = resultsDir + '_codepoint_fixed';
 
 		run('css', dest, {
 			fixedCodepoints: {
