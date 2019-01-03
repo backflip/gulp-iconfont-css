@@ -51,7 +51,7 @@ The name of the generated font family (required). **Important**: Has to be ident
 #### options.path
 Type: `String`
 
-The template path (optional, defaults to `css` template provided with plugin).If set to `'scss'` or `'less'`, the corresponding default template will be used. See [templates](templates)
+The template path (optional, defaults to `css` template provided with plugin).If set to `'scss'`,  `'sass'` or `'less'`, the corresponding default template will be used. See [templates](templates)
 
 #### options.targetPath
 Type: `String`

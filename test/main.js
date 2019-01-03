@@ -143,6 +143,7 @@ function testCacheBuster() {
 
 describe('gulp-iconfont-css', function() {
 	testType('scss', 'SCSS');
+	testType('sass', 'Sass');
 	testType('less', 'Less');
 	testType('css', 'CSS');
 
