@@ -75,7 +75,7 @@ function iconfontCSS(config) {
 				base: file.base,
 				cwd: file.cwd,
 				path: path.join(file.base, config.targetPath),
-				contents: file.isBuffer() ? new Buffer(0) : new Stream.PassThrough()
+				contents: file.isBuffer() ? Buffer.alloc(0) : new Stream.PassThrough()
 			});
 		}
 
@@ -127,12 +127,7 @@ function iconfontCSS(config) {
 						throw new PluginError(PLUGIN_NAME, 'Error in template: ' + err.message);
 					}
 
-					// TODO: remove condition and the else block for version 3.0
-					if( Buffer.from ){
-						content = Buffer.from(html);
-					}else{
-						content = Buffer(html);
-					}
+					content = Buffer.from(html);
 
 					if (outputFile.isBuffer()) {
 						outputFile.contents = content;
