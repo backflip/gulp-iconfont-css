@@ -55,7 +55,7 @@ The template path (optional, defaults to `css` template provided with plugin). I
 #### options.targetPath
 Type: `String`
 
-The path where the (S)CSS file should be saved, relative to the path used in `gulp.dest()` (optional, defaults to `_icons.css`). Depennding on the path, it might be necessary to set the `base` option, see https://github.com/backflip/gulp-iconfont-css/issues/16.
+The path where the (S)CSS file should be saved, relative to the path used in `gulp.dest()` (optional, defaults to `_icons.css`). Depending on the path, it might be necessary to set the `base` option, see https://github.com/backflip/gulp-iconfont-css/issues/16.
 
 #### options.fontPath
 Type: `String`
